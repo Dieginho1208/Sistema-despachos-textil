@@ -16,7 +16,7 @@ import traceback
 
 def excepthook(exc_type, exc_value, exc_traceback):
     error_msg = "".join(traceback.format_exception(exc_type, exc_value, exc_traceback))
-    print("Error detallado:", error_msg)  # Esto aparecerá en la consola
+    print("Error detallado:", error_msg)  
     with open("error_log.txt", "a") as f:
         f.write(error_msg)
     messagebox.showerror("Error crítico", f"Ocurrió un error:\n\n{error_msg}")
