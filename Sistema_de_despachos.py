@@ -1933,11 +1933,6 @@ class AplicacionDespachos:
 
             hoy = datetime.now()
             
-            # Información fija de la empresa
-            ws[f'B{fila}'] = 
-            ws[f'B{fila+1}'] = 
-            ws[f'B{fila+2}'] = 
-            
             # Fecha de emisión (formato DD/MM/AAAA)
             ws[f'J{fila}'] = "FECHA DE EMISION"
             ws[f'L{fila}'] = hoy.day       # Día
