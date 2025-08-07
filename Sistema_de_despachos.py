@@ -35,7 +35,7 @@ DEFAULT_CONFIG = {
     "color_fondo": "#f8f9fa"
 }
 
-# Modificaciones en la clase CalculadoraPesoDialog
+# Clase CalculadoraPesoDialog
 class CalculadoraPesoDialog(tk.Toplevel):
     """Diálogo flexible para calcular peso de bultos con botones fijos"""
     
@@ -120,7 +120,7 @@ class CalculadoraPesoDialog(tk.Toplevel):
         entry_frame = ttk.Frame(scrollable_frame)
         entry_frame.pack(fill=tk.BOTH, expand=True)
         
-        # Crear campos para hasta max_bultos bultos
+        # Crear campos para hasta max_bultos 
         for i in range(1, self.max_bultos + 1):
             frame = ttk.Frame(entry_frame, padding=2)
             frame.pack(fill=tk.X, pady=1)
@@ -244,6 +244,7 @@ class CalculadoraPesoDialog(tk.Toplevel):
         
 
 class AplicacionDespachos:
+    #Clase AplicacionDespachos
     
     def __init__(self, root: tk.Tk):
         self.root = root
@@ -252,7 +253,7 @@ class AplicacionDespachos:
         self._inicializar_datos()
         self._inicializar_estilos()
         
-        # Ahora que la ventana raíz está configurada, podemos crear variables Tkinter
+        
         self.peso_total_var = tk.StringVar(value="Peso Total: 0.00 kg")
         self.tipo_var = tk.StringVar()
         
@@ -378,10 +379,6 @@ class AplicacionDespachos:
                 "La aplicación se cerrará de todos modos.")
         
         self.root.destroy()
-
-    def _crear_seccion_tejido(self, parent):
-        """Eliminada - La sección de tejido ya está incluida en la sección del cliente"""
-        pass
         
     def _obtener_color_config(self, clave: str, default: str) -> str:
         """Obtiene un color de la configuración validando su formato"""
@@ -658,6 +655,7 @@ class AplicacionDespachos:
                 width=ancho)
             entry.grid(row=i, column=1, sticky=tk.W, pady=5, padx=5)
             setattr(self, attr, entry)
+            
     def _crear_seccion_articulos(self, parent):
         """Crea la sección de artículos usando pack() consistentemente"""
         articulos_frame = ttk.LabelFrame(
@@ -666,7 +664,7 @@ class AplicacionDespachos:
             padding=(15, 10))
         articulos_frame.pack(fill=tk.BOTH, expand=True, pady=5)
         
-        # Treeview y controles - todos con pack()
+        # Treeview y controles
         self._crear_treeview_articulos(articulos_frame)
         self._crear_controles_articulos(articulos_frame)
 
@@ -1345,7 +1343,7 @@ class AplicacionDespachos:
                 self._actualizar_estado(f"Clientes encontrados: {len(resultados)}")
 
     def _seleccionar_cliente(self, event):
-        """Selecciona un cliente de la lista y muestra sus datos (versión simplificada)"""
+        """Selecciona un cliente de la lista y muestra sus datos"""
         if not self.clientes_listbox.curselection():
             return
             
@@ -1391,15 +1389,12 @@ class AplicacionDespachos:
         try:
             selected = self._obtener_articulo_seleccionado_busqueda()
             if selected:
-                # Aquí puedes agregar lógica para actualizar el peso_var si es necesario
-                # Por ejemplo, si los artículos tienen pesos predefinidos:
-                # peso_var.set("1.00")  # Peso por defecto
                 pass
         except Exception as e:
             self._mostrar_error("Error", f"No se pudo procesar la selección:\n{str(e)}")
             
     def _agregar_articulo(self):
-        """Muestra diálogo para buscar y agregar artículos con interfaz mejorada"""
+        """Muestra diálogo para buscar y agregar artículos con interfaz"""
         if not self.cliente_actual:
             self._mostrar_advertencia("Seleccione un cliente primero")
             return
@@ -1570,7 +1565,7 @@ class AplicacionDespachos:
             style='Secondary.TButton'
         ).pack(side=tk.LEFT)
 
-        # Configuración de eventos - MODIFICACIÓN PRINCIPAL AQUÍ
+        # Configuración de eventos
         def on_tree_select(event=None):
             selected = self.search_tree.selection()
             if selected:
@@ -1627,7 +1622,7 @@ class AplicacionDespachos:
             return False
 
     def _calcular_peso_bultos(self, cantidad_var: tk.StringVar, peso_var: tk.StringVar):
-        """Calcula el peso total para múltiples bultos (versión optimizada)"""
+        """Calcula el peso total para múltiples bultos"""
         try:
             dialog = CalculadoraPesoDialog(self.root)
             self.root.wait_window(dialog)
@@ -1649,6 +1644,7 @@ class AplicacionDespachos:
                     
         except Exception as e:
             self._mostrar_error("Error", f"No se pudo calcular pesos:\n{str(e)}")
+            
     def _obtener_articulo_seleccionado_busqueda(self) -> Optional[Tuple[str, str]]:
         """Obtiene el artículo seleccionado en el diálogo de búsqueda"""
         if not hasattr(self, 'search_tree'):
@@ -1935,15 +1931,12 @@ class AplicacionDespachos:
             # Encontrar primera fila vacía
             fila = self._encontrar_fila_vacia(ws)
 
-            # ----------------------------
-            # CABECERA (ESTILO IDÉNTICO AL FORMATO)
-            # ----------------------------
             hoy = datetime.now()
             
             # Información fija de la empresa
-            ws[f'B{fila}'] = "Domicilio Fiscal: Zona Industrial Los Naranjos, Av Maturin, Edif, Centro Industrial Ferro"
-            ws[f'B{fila+1}'] = "Piso 1, Guarenas - Edo Miranda, Telfs.:(0212) 361.42.54 - Fax (0212) 361.20.31"
-            ws[f'B{fila+2}'] = "e-mail: evertex@cantv.net / tejidosevertex@gmail.com"
+            ws[f'B{fila}'] = 
+            ws[f'B{fila+1}'] = 
+            ws[f'B{fila+2}'] = 
             
             # Fecha de emisión (formato DD/MM/AAAA)
             ws[f'J{fila}'] = "FECHA DE EMISION"
@@ -1960,9 +1953,7 @@ class AplicacionDespachos:
             ws[f'B{fila+8}'] = "DIRECCION:"
             ws[f'B{fila+9}'] = self.cliente_actual.get('Dirección', '')
 
-            # ----------------------------
-            # TABLA DE PRODUCTOS (CON ESTILO)
-            # ----------------------------
+
             encabezados = ["DESCRIPCION DEL PRODUCTO", "BULTOS", "CANTI.KILOS/METROS"]
             ws[f'B{fila+11}'] = encabezados[0]
             ws[f'I{fila+11}'] = encabezados[1]
@@ -2012,9 +2003,6 @@ class AplicacionDespachos:
                 total_peso += peso
                 fila_actual += 1
 
-            # ----------------------------
-            # TOTALES Y PIE DE PÁGINA
-            # ----------------------------
             # Totales
             ws[f'I{fila_actual}'] = "TOTALES"
             ws[f'J{fila_actual}'] = total_peso
@@ -2094,7 +2082,7 @@ class AplicacionDespachos:
                     bottom=Side(style='thin', color="D9D9D9"))
                 
     def _exportar_excel(self):
-        """Exporta el despacho en formato profesional idéntico al ejemplo proporcionado"""
+        """Exporta el despacho en formato excel"""
         try:
             if not self._validar_despacho():
                 return False
@@ -2120,9 +2108,6 @@ class AplicacionDespachos:
             ws = wb.active
             ws.title = "GUIA DE DESPACHO"
 
-            # ----------------------------
-            # CONFIGURACIÓN DE FORMATO GENERAL
-            # ----------------------------
             # 1. Anchura de columnas (manteniendo las originales)
             ws.column_dimensions['A'].width = 5       # Margen izquierdo mínimo
             ws.column_dimensions['B'].width = 60      # Descripción 
@@ -2142,9 +2127,6 @@ class AplicacionDespachos:
             ws.row_dimensions[13].height = 20   # Encabezado tabla
             ws.row_dimensions[14].height = 20   # Primera fila de productos
 
-            # ----------------------------
-            # CABECERA
-            # ----------------------------
             # "GUARENAS" en C2 con fuente de 11pt (reducido de 12pt)
             ws['C2'] = "GUARENAS"
             ws['C2'].font = Font(name='Arial', size=11, bold=True)
@@ -2158,9 +2140,6 @@ class AplicacionDespachos:
             ws['D3'].font = Font(name='Arial', size=10)
             ws['D3'].alignment = Alignment(horizontal='right')
 
-            # ----------------------------
-            # INFORMACIÓN DEL CLIENTE
-            # ----------------------------
             # "Nombre o Razon Social:" en B8 (fila 8)
             ws['B8'] = "Nombre o Razon Social:"
             ws['B8'].font = Font(name='Arial', size=10, bold=True)
@@ -2188,9 +2167,6 @@ class AplicacionDespachos:
             ws['C12'] = tel_text
             ws['C12'].font = Font(name='Arial', size=10, bold=True)
 
-            # ----------------------------
-            # TABLA DE PRODUCTOS (INICIANDO EN FILA 13)
-            # ----------------------------
             # Encabezados de tabla en fila 13
             encabezados = ["DESCRIPCIÓN", "BULTOS", "KILOS"]
             ws['B13'] = encabezados[0]
@@ -2262,9 +2238,6 @@ class AplicacionDespachos:
                 total_peso += peso
                 fila_actual += 1
 
-            # ----------------------------
-            # TOTALES (SIN ESPACIO, CON BORDES DOBLES NEGROS)
-            # ----------------------------
             # Nota: fila_totales = fila_actual (sin +1 para que quede pegado)
             fila_totales = fila_actual
             
@@ -2298,9 +2271,7 @@ class AplicacionDespachos:
                 bottom=Side(style='double', color='000000')
             )
 
-            # ----------------------------
-            # PIE DE PÁGINA FIJO (HASTA FILA 50)
-            # ----------------------------
+            
             # Motivo del traslado (fila 48)
             ws['B48'] = "MOTIVO DEL TRASLADO:"
             ws['B48'].font = Font(name='Arial', size=10, bold=True)
@@ -2317,23 +2288,21 @@ class AplicacionDespachos:
             ws['C50'] = "PLACA: ____________________"
             ws['C50'].font = Font(name='Arial', size=10)
 
-            # ----------------------------
-            # CONFIGURACIÓN DE IMPRESIÓN (HASTA FILA 50)
-            # ----------------------------
+            
             ws.page_setup.orientation = ws.ORIENTATION_PORTRAIT
             ws.page_setup.paperSize = ws.PAPERSIZE_LETTER
             
             # Márgenes mínimos posibles (en pulgadas)
-            ws.page_margins.left = 0.12    # 3.0 mm (reducido de 3.8)
-            ws.page_margins.right = 0.12   # 3.0 mm (reducido de 3.8)
-            ws.page_margins.top = 0.16     # 4.0 mm (reducido de 5.0)
-            ws.page_margins.bottom = 0.12  # 3.0 mm (reducido de 4.5) - Ajuste clave
+            ws.page_margins.left = 0.12    # 3.0 mm 
+            ws.page_margins.right = 0.12   # 3.0 mm 
+            ws.page_margins.top = 0.16     # 4.0 mm 
+            ws.page_margins.bottom = 0.12  # 3.0 mm 
             ws.page_margins.header = 0.08  # 2.0 mm 
             ws.page_margins.footer = 0.08  # 2.0 mm
 
             # Reducción general de alturas de fila
             for row in range(1, 51):
-                if ws.row_dimensions[row].height > 14:  # Reducimos todas las filas
+                if ws.row_dimensions[row].height > 14:  
                     ws.row_dimensions[row].height = 14  # 0.93 cm (antes 1.0 cm)
             
             # Ajustamos filas clave específicamente
@@ -2343,14 +2312,11 @@ class AplicacionDespachos:
             # Configuración de escala forzada
             ws.page_setup.fitToHeight = 1  # Estrictamente 1 página
             ws.page_setup.fitToWidth = 1
-            ws.page_setup.scale = 98       # Reducción del 2% si es necesario
+            ws.page_setup.scale = 98       
 
             # Área de impresión forzada
             ws.print_area = f"A1:D50"
 
-            # ----------------------------
-            # AJUSTE ALTERNATIVO AUTOMÁTICO (si aún no cabe)
-            # ----------------------------
             if fila_actual > 45:  # Si hay demasiados artículos
                 # Reducir fuente de descripción de productos a 9.5pt
                 for row in range(14, fila_actual + 1):
@@ -2368,11 +2334,8 @@ class AplicacionDespachos:
                 for row in [48, 49, 50]:
                     ws[f'B{row}'] = ws[f'C{row}'] = None
                 
-                ws.print_area = f"A1:D49"  # Nueva área de impresión
+                ws.print_area = f"A1:D49"  
 
-            # ----------------------------
-            # GUARDAR ARCHIVO
-            # ----------------------------
             wb.save(filepath)
             
             # Preguntar si abrir el archivo
@@ -2394,7 +2357,7 @@ class AplicacionDespachos:
         
 
     def _exportar_despacho_detallado(self):
-        """Exporta el despacho con cada familia en cuadros separados verticalmente"""
+        """Exporta el despacho detallado"""
         try:
             if not self._validar_despacho():
                 return False
@@ -2419,9 +2382,6 @@ class AplicacionDespachos:
             ws = wb.active
             ws.title = "DESPACHO"[:31]  # Limitar a 31 caracteres
 
-            # ------------------------------------------
-            # PROCESAMIENTO AVANZADO DE ARTÍCULOS (VERSIÓN FINAL)
-            # ------------------------------------------
             productos = {}  # {nombre_producto: {'codigos': {color: codigo}, 'pesos': {color: [pesos]}, 'tipo': tipo}
             
             for item in self.tree.get_children():
@@ -2431,7 +2391,7 @@ class AplicacionDespachos:
 
                 descripcion = valores[1]
                 
-                # ALGORITMO MEJORADO DE EXTRACCIÓN DE NOMBRE Y COLOR
+                # EXTRACCIÓN DE NOMBRE Y COLOR
                 partes = [p.strip() for p in descripcion.split(' - ') if p.strip()]
                 
                 # 1. Extraer código (si existe)
@@ -2464,7 +2424,7 @@ class AplicacionDespachos:
                                 break
                         break
                 
-                # 4. Limpieza final del nombre base (quitar color si está al final)
+                # 4. Limpieza final del nombre base
                 for color_term in colores_conocidos:
                     if nombre_base.endswith(color_term):
                         nombre_base = nombre_base[:-len(color_term)].strip()
@@ -2500,9 +2460,6 @@ class AplicacionDespachos:
             # Ordenar productos alfabéticamente por nombre base
             productos_ordenados = sorted(productos.items(), key=lambda x: x[0])
 
-            # ------------------------------------------
-            # ESCRITURA EN EXCEL CON FORMATO FINAL MEJORADO
-            # ------------------------------------------
             current_row = 1
             
             # Estilos de bordes
@@ -2538,9 +2495,6 @@ class AplicacionDespachos:
                 colors = sorted(datos['pesos'].keys())
                 max_bultos = max(len(datos['pesos'][color]) for color in colors) if colors else 0
                 
-                # ----------------------------
-                # NOMBRE DEL TEJIDO (con borde completo grueso)
-                # ----------------------------
                 # Aplicar borde grueso completo a toda la fila
                 for col in range(1, len(colors)+2):
                     cell = ws.cell(row=current_row, column=col)
@@ -2550,9 +2504,6 @@ class AplicacionDespachos:
                 ws.cell(row=current_row, column=2, value=nombre_base).font = bold_font
                 current_row += 1
                 
-                # ----------------------------
-                # SECCIÓN DE COLORES (con bordes completos gruesos)
-                # ----------------------------
                 # Fila superior: "COLORES:" en A y nombres de colores en B, C, etc.
                 for col in range(1, len(colors)+2):
                     cell = ws.cell(row=current_row, column=col)
@@ -2584,9 +2535,6 @@ class AplicacionDespachos:
                 
                 current_row += 1
                 
-                # ----------------------------
-                # ENCABEZADO DE TABLA (ITEM y Peso kg)
-                # ----------------------------
                 # Encabezado de ITEM (con borde grueso completo)
                 for col in range(1, len(colors)+2):
                     cell = ws.cell(row=current_row, column=col)
@@ -2607,9 +2555,6 @@ class AplicacionDespachos:
                 
                 current_row += 1
                 
-                # ----------------------------
-                # TABLA DE BULTOS (con bordes delgados completos)
-                # ----------------------------
                 # Escribir cada bulto en su columna correspondiente
                 for bulto_idx in range(max_bultos):
                     # Celda de ITEM (número entero, centrado, con borde delgado completo)
@@ -2633,9 +2578,6 @@ class AplicacionDespachos:
                     
                     current_row += 1
                 
-                # ----------------------------
-                # TOTALES POR COLOR (con borde doble inferior y laterales)
-                # ----------------------------
                 # Aplicar borde doble inferior y laterales a toda la fila
                 for col in range(1, len(colors)+2):
                     cell = ws.cell(row=current_row, column=col)
@@ -2656,10 +2598,7 @@ class AplicacionDespachos:
                     cell.alignment = Alignment(horizontal='center', vertical='center')
                 
                 current_row += 1
-                
-                # ----------------------------
-                # RESUMEN FINAL DEL PRODUCTO (con bordes completos)
-                # ----------------------------
+            
                 # Total KG (suma de todos los colores)
                 total_producto = sum(totales_color.values())
                 total_global_peso += total_producto
@@ -2681,9 +2620,6 @@ class AplicacionDespachos:
                 
                 current_row += 4  # Más espacio entre productos
 
-            # ------------------------------------------
-            # TOTAL GENERAL FINAL (con bordes mejorados)
-            # ------------------------------------------
             # Aplicar bordes gruesos completos a los totales generales
             thick_border_all = Border(left=Side(style='medium'), right=Side(style='medium'),
                                     top=Side(style='medium'), bottom=Side(style='medium'))
@@ -2706,9 +2642,6 @@ class AplicacionDespachos:
             ws.cell(row=current_row, column=1, value="TOTAL GENERAL BULTOS:").font = title_font
             ws.cell(row=current_row, column=2, value=total_global_bultos).font = title_font
             
-            # ------------------------------------------
-            # AJUSTES FINALES DE FORMATO
-            # ------------------------------------------
             # Ajustar anchos de columnas (ampliar columna A significativamente)
             ws.column_dimensions['A'].width = 30  # Ampliada a 30 (antes era 22)
             for col in ['B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J']:
@@ -2742,11 +2675,6 @@ class AplicacionDespachos:
             self._mostrar_error("Error al exportar", error_msg)
             self._registrar_error(e)
             return False
-        
-
-
-
-    
     
     def _add_border(self, ws, cell_range, border_style='thin'):
         """Añade bordes a un rango de celdas"""
@@ -2759,7 +2687,6 @@ class AplicacionDespachos:
                     left=side, right=side,
                     top=side, bottom=side
                 )
-
 
     def _escribir_info_exportacion(self, sheet):
         """Escribe la información básica del despacho en la hoja Excel"""
@@ -2909,7 +2836,7 @@ class AplicacionDespachos:
         ultima_fila = 8 + len(self.tree.get_children()) + 3
         sheet.print_area = f"A1:F{ultima_fila}"
 
-        # Configurar encabezado y pie de página (versión compatible)
+        # Configurar encabezado y pie de página 
         try:
             # Intenta usar header_footer si está disponible
             sheet.header_footer.center_header.text = "&\"Arial,Bold\"&14DESPACHO DE MATERIAL"
@@ -3321,7 +3248,7 @@ class AplicacionDespachos:
         info_text = """
         SISTEMA DE GESTIÓN DE DESPACHOS v2.0
         
-        Desarrollado por: [Tu Nombre]
+        Desarrollado por: [Diego Andres Borges Rivas]
         
         © 2024 Todos los derechos reservados
         
@@ -3332,8 +3259,8 @@ class AplicacionDespachos:
         - Configuración personalizable
         
         Contacto:
-        [tu@email.com]
-        [tu teléfono]
+        [diegoborges12082003@gmail.com]
+        [+58 412 707 8504]
         """
         
         ttk.Label(
