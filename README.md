@@ -1,6 +1,3 @@
-# Sistema-despachos-textil
-Sistema de despachos con autogeneración de Excel para guía de traslado y hoja detallada de lotes.
-
 # Sistema de Gestión de Despachos Textiles
 
 Sistema completo para gestión de despachos en la industria textil, con control de inventario, cálculo de pesos y generación de reportes profesionales.
