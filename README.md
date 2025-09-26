@@ -9,6 +9,7 @@ Sistema completo para gestión de despachos en la industria textil, con control 
 - 📊 Exportación a Excel con formato profesional
 - 🔍 Búsqueda avanzada de productos
 - 📝 Generación automática de guías de despacho
+- 📝 Generación de reportes diarios de despachos
 
 ## Requisitos del sistema
 
